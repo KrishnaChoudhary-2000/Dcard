@@ -2,12 +2,10 @@ services:
   - type: web
     name: glydus-digital-card
     env: node
-    rootDir: .
+    rootDir: ./GlydusDigiCard
     buildCommand: |
-      # Install client and server deps using npm (simpler on Render)
       npm --prefix client ci || npm --prefix client install
       npm --prefix server ci || npm --prefix server install
-      # Build the React client
       npm --prefix client run build
     startCommand: node server/server.js
     healthCheckPath: /api/health
