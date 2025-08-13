@@ -4,16 +4,13 @@ services:
     env: node
     rootDir: .
     buildCommand: |
-      corepack enable
-      pnpm -v
-      pnpm install --frozen-lockfile || pnpm install
-      pnpm -C client install
-      pnpm -C server install
-      pnpm -C client build
+      # Install client and server deps using npm (simpler on Render)
+      npm --prefix client ci || npm --prefix client install
+      npm --prefix server ci || npm --prefix server install
+      # Build the React client
+      npm --prefix client run build
     startCommand: node server/server.js
     healthCheckPath: /api/health
-    autoDeploy: true
-    plan: free
     envVars:
       - key: NODE_VERSION
         value: 18
