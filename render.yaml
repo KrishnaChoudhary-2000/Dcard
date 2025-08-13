@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: glydus-digital-card
+    env: node
+    rootDir: .
+    buildCommand: |
+      corepack enable
+      pnpm -v
+      pnpm install --frozen-lockfile || pnpm install
+      pnpm -C client install
+      pnpm -C server install
+      pnpm -C client build
+    startCommand: node server/server.js
+    healthCheckPath: /api/health
+    autoDeploy: true
+    plan: free
+    envVars:
+      - key: NODE_VERSION
+        value: 18
+      - key: NODE_ENV
+        value: production
+      - key: MONGODB_URI
+        sync: false

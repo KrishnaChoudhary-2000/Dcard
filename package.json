@@ -1,0 +1,37 @@
+{
+  "name": "glydus-digital-card-monorepo",
+  "version": "1.0.0",
+  "description": "Full-stack digital business card application",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently \"pnpm run dev:server\" \"pnpm run dev:client\"",
+    "dev:client": "cd client && pnpm run dev",
+    "dev:server": "cd server && pnpm run dev",
+    "build": "pnpm run build:client && pnpm run build:server",
+    "build:client": "cd client && pnpm run build",
+    "build:server": "cd server && pnpm run build",
+    "start": "cd server && pnpm start",
+    "install:all": "pnpm install && cd client && pnpm install && cd ../server && pnpm install",
+    "clean": "rm -rf node_modules client/node_modules server/node_modules client/dist server/dist",
+    "lint": "pnpm run lint:client && pnpm run lint:server",
+    "lint:client": "cd client && pnpm run lint",
+    "lint:server": "cd server && pnpm run lint"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
+  "keywords": [
+    "digital-card",
+    "business-card",
+    "react",
+    "express",
+    "mongodb",
+    "full-stack"
+  ],
+  "author": "Glydus Team",
+  "license": "MIT"
+}
